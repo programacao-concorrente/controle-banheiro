@@ -1,10 +1,10 @@
 package ufc.br.great.pc.banheiro.controle;
 
-public class UsaBanheiroRapido implements Runnable {
+public class TarefaUsarBanheiroRapido implements Runnable {
 
 	private Banheiro banheiro;
 		
-	public UsaBanheiroRapido(Banheiro banheiro) {
+	public TarefaUsarBanheiroRapido(Banheiro banheiro) {
 		this.banheiro = banheiro;
 	}
 

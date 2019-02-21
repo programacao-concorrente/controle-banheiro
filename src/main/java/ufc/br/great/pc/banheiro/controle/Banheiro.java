@@ -1,5 +1,10 @@
 package ufc.br.great.pc.banheiro.controle;
 
+/**
+ * Objeto que será compartilhado entre as tarefas do projeto
+ * @author armandosoaressousa
+ *
+ */
 public class Banheiro {
 	
 	private boolean ehSujo=true;
@@ -20,7 +25,7 @@ public class Banheiro {
 	
 	/**
 	 * Mostra uma barra de progresso enquanto a ação é executada
-	 * @param total
+	 * @param total - tempo em segundos
 	 */
 	private void barraDeProgresso(float total){		
 		
@@ -43,13 +48,12 @@ public class Banheiro {
 				System.out.print("\r"+ barra + numero + "%");
 			}
 		}
-		System.out.println("\n");
-		
+		System.out.println("\n");		
 	}
 
 	
 	/**
-	 * Limpa o banheiro e notifica todas as threads, desse objeto, para acordarem
+	 * Acao de limpar o banheiro: Limpa o banheiro e notifica todas as threads, desse objeto, para acordarem
 	 */
 	public void limpa() {
 		String nome = Thread.currentThread().getName();
@@ -75,6 +79,9 @@ public class Banheiro {
 	    }
 	}
 		
+	/**
+	 * Usando o banheiro na acao numero 1
+	 */
 	public void fazNumero1() {
 		String nome = Thread.currentThread().getName();
 		
@@ -102,6 +109,9 @@ public class Banheiro {
 		}
 	}
 	
+	/**
+	 * Usando o banheiro na acao numero 2
+	 */
 	public void fazNumero2() {		
 		String nome = Thread.currentThread().getName();
 		
