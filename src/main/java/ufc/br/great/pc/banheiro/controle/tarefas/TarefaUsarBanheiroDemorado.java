@@ -12,7 +12,7 @@ public class TarefaUsarBanheiroDemorado implements Runnable {
 
 	@Override
 	public void run() {
-		this.banheiro.fazNumero2(4000);
+		this.banheiro.fazNumero2(5000);
 	}
 
 }

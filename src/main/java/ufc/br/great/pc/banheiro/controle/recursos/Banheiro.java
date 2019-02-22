@@ -45,7 +45,7 @@ public class Banheiro {
 	        System.out.println(nome + " limpando o banheiro");
 	        this.ehSujo = false;
 	        
-	        barra.mostraBarraDeProgresso(5);
+	        barra.mostraBarraDeProgressoMultiploDe10(10);
 	        
 	        this.notifyAll();
 	        System.out.println(nome + " saindo do banheiro");
@@ -58,6 +58,7 @@ public class Banheiro {
 	public void fazNumero1(long tempo) {
 		String nome = Thread.currentThread().getName();
 		BarraProgresso barra = new BarraProgresso();
+		int tempoI  = (int) tempo;
 		
 		System.out.println(nome + " Batendo na porta...");
 		
@@ -68,9 +69,9 @@ public class Banheiro {
 			}
 			
 			System.out.println(nome + " entrando no banheiro");
-	        System.out.println(nome + " fazendo coisa rapida");	       	       
+	        System.out.println(nome + " fazendo coisa rapida");	   	       	        
 	        
-	        barra.mostraBarraDeProgresso(tempo/1000);
+	        barra.mostraBarraDeProgressoMultiploDe10(tempoI/1000);
 	        
 	        this.ehSujo = true;
 	        
@@ -86,6 +87,7 @@ public class Banheiro {
 	public void fazNumero2(long tempo) {		
 		String nome = Thread.currentThread().getName();
 		BarraProgresso barra = new BarraProgresso();
+		int tempoI = (int) tempo;
 		
 		System.out.println(nome + " Batendo na porta...");
 		
@@ -97,8 +99,8 @@ public class Banheiro {
 			
 			System.out.println(nome + " entrando no banheiro");
 			System.out.println(nome + " fazendo coisa demorada");			
-	        
-	        barra.mostraBarraDeProgresso(tempo/1000);
+	        	        
+	        barra.mostraBarraDeProgressoMultiploDe10(tempoI/1000);
 	        
 	        this.ehSujo = true;
 	        System.out.println(nome + " dando descarga");
