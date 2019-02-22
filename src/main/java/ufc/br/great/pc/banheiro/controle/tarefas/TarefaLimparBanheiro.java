@@ -1,4 +1,6 @@
-package ufc.br.great.pc.banheiro.controle;
+package ufc.br.great.pc.banheiro.controle.tarefas;
+
+import ufc.br.great.pc.banheiro.controle.recursos.Banheiro;
 
 public class TarefaLimparBanheiro implements Runnable {
 
@@ -12,13 +14,7 @@ public class TarefaLimparBanheiro implements Runnable {
 	public void run() {
 		while (true) {
 			this.banheiro.limpa();
-			try {
-				Thread.sleep(15000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 		}
-		
 	}
 
 }
