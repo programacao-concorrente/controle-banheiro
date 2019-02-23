@@ -14,6 +14,12 @@ public class TarefaLimparBanheiro implements Runnable {
 	public void run() {
 		while (true) {
 			this.banheiro.limpa();
+			
+			try {
+                Thread.sleep(5000);//limpando cada 5s
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 		}
 	}
 

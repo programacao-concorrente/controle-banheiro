@@ -15,22 +15,19 @@ public class Banheiro {
 	 * @param nome
 	 */
 	private void esperaLaFora(String nome) {
-
 	    System.out.println(nome + ", eca, banheiro está sujo");
 	    try {
-	        this.wait();
+	        this.wait(5000);
 	    } catch (InterruptedException e) {
 	        e.printStackTrace();
 	    }
 	}
 	
-	
 	/**
 	 * Acao de limpar o banheiro: Limpa o banheiro e notifica todas as threads, desse objeto, para acordarem
 	 */
 	public void limpa() {
-		String nome = Thread.currentThread().getName();
-		BarraProgresso barra = new BarraProgresso();
+		String nome = Thread.currentThread().getName();		
 
 	    System.out.println(nome + " batendo na porta");
 
@@ -42,13 +39,11 @@ public class Banheiro {
 	            return;
 	        }
 
-	        System.out.println(nome + " limpando o banheiro");
-	        this.ehSujo = false;
-	        
-	        barra.mostraBarraDeProgressoMultiploDe10(10);
-	        
-	        this.notifyAll();
+	        System.out.println(nome + " limpando o banheiro");	        	       	        
+	        this.notifyAll();	        
 	        System.out.println(nome + " saindo do banheiro");
+	        
+	        this.ehSujo = false;
 	    }
 	}
 		
@@ -71,13 +66,13 @@ public class Banheiro {
 			System.out.println(nome + " entrando no banheiro");
 	        System.out.println(nome + " fazendo coisa rapida");	   	       	        
 	        
-	        barra.mostraBarraDeProgressoMultiploDe10(tempoI/1000);
-	        
-	        this.ehSujo = true;
+	        barra.mostraBarraDeProgressoMultiploDe10(tempoI/1000);	        	        
 	        
 	        System.out.println(nome + " dando descarga");
 	        System.out.println(nome + " lavando a mao");
-	        System.out.println(nome + " saindo do banheiro");			
+	        System.out.println(nome + " saindo do banheiro");	
+	        
+	        this.ehSujo = true;
 		}
 	}
 	
@@ -101,11 +96,12 @@ public class Banheiro {
 			System.out.println(nome + " fazendo coisa demorada");			
 	        	        
 	        barra.mostraBarraDeProgressoMultiploDe10(tempoI/1000);
-	        
-	        this.ehSujo = true;
+	        	        
 	        System.out.println(nome + " dando descarga");
 	        System.out.println(nome + " lavando a mao");
-	        System.out.println(nome + " saindo do banheiro");			
+	        System.out.println(nome + " saindo do banheiro");
+	        
+	        this.ehSujo = true;
 		}
 	}
 

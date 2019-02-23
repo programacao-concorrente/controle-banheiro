@@ -52,7 +52,7 @@ public class BarraProgresso {
 		System.out.println("\n");		
 	}
 	
-	public void mostraBarraDeProgressoMultiploDe10(int tempo) {
+	public synchronized void mostraBarraDeProgressoMultiploDe10(int tempo) {
 		int qtdQuadrados = 10/tempo;
 		String barra="";
 		String barra1="";
@@ -90,17 +90,18 @@ public class BarraProgresso {
 			}else {
 				System.out.print("\r"+ novaBarra + numero + "%");
 			}
-
+		
 			try {
 				Thread.sleep(qtdQuadrados * 1000);
 			}catch (InterruptedException e) {
 				e.printStackTrace();
-			}			
+			}
+						
 			
 		}
 	}
 	
-	public void mostraBarraDeProgressoProporcionalAoTempo(float tempo) {
+	public synchronized void mostraBarraDeProgressoProporcionalAoTempo(float tempo) {
 		float tempoIncremento;
 		String barra="";
 		int tempoI;
@@ -110,7 +111,7 @@ public class BarraProgresso {
 		
 		for (int i=0; i < tempo; i++) {
 			try {
-				Thread.sleep(tempoI * 1000);
+				Thread.sleep(tempoI * 100);
 			}catch (InterruptedException e) {
 				e.printStackTrace();
 			}
