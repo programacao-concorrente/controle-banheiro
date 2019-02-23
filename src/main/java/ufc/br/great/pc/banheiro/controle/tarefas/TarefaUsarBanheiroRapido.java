@@ -1,4 +1,6 @@
-package ufc.br.great.pc.banheiro.controle;
+package ufc.br.great.pc.banheiro.controle.tarefas;
+
+import ufc.br.great.pc.banheiro.controle.recursos.Banheiro;
 
 public class TarefaUsarBanheiroRapido implements Runnable {
 
@@ -10,7 +12,7 @@ public class TarefaUsarBanheiroRapido implements Runnable {
 
 	@Override
 	public void run() {
-		this.banheiro.fazNumero1();
+		this.banheiro.fazNumero1(2000);
 	}
 
 }

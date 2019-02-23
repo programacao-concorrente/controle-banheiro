@@ -1,4 +1,6 @@
-package ufc.br.great.pc.banheiro.controle;
+package ufc.br.great.pc.banheiro.controle.recursos;
+
+import ufc.br.great.pc.banheiro.controle.util.BarraProgresso;
 
 /**
  * Objeto que será compartilhado entre as tarefas do projeto
@@ -6,7 +8,6 @@ package ufc.br.great.pc.banheiro.controle;
  *
  */
 public class Banheiro {
-	
 	private boolean ehSujo=true;
 	
 	/**
@@ -14,54 +15,23 @@ public class Banheiro {
 	 * @param nome
 	 */
 	private void esperaLaFora(String nome) {
-
 	    System.out.println(nome + ", eca, banheiro está sujo");
 	    try {
-	        this.wait();
+	        this.wait(5000);
 	    } catch (InterruptedException e) {
 	        e.printStackTrace();
 	    }
 	}
 	
 	/**
-	 * Mostra uma barra de progresso enquanto a ação é executada
-	 * @param total - tempo em segundos
-	 */
-	private void barraDeProgresso(float total){		
-		
-		ExtendedASCII eASCII = new ExtendedASCII();
-		String barra = "";
-		
-		for(float i=1; i < total+1; i++) {
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			char quadrado = eASCII.getAscii(218);
-			barra = barra + quadrado; 
-			float x = (i/total) * 100;
-			String numero = String.format("%.2f", x); 
-			if (x < 90) {
-				System.out.print(barra + numero + "% \r");
-			}else {
-				System.out.print("\r"+ barra + numero + "%");
-			}
-		}
-		System.out.println("\n");		
-	}
-
-	
-	/**
 	 * Acao de limpar o banheiro: Limpa o banheiro e notifica todas as threads, desse objeto, para acordarem
 	 */
 	public void limpa() {
-		String nome = Thread.currentThread().getName();
+		String nome = Thread.currentThread().getName();		
 
 	    System.out.println(nome + " batendo na porta");
 
 	    synchronized (this) {
-
 	        System.out.println(nome + " entrando no banheiro");
 
 	        if (!this.ehSujo) {
@@ -69,51 +39,50 @@ public class Banheiro {
 	            return;
 	        }
 
-	        System.out.println(nome + " limpando o banheiro");
-	        this.ehSujo = false;
-
-	        this.barraDeProgresso(10);
-	        this.notifyAll();
-
+	        System.out.println(nome + " limpando o banheiro");	        	       	        
+	        this.notifyAll();	        
 	        System.out.println(nome + " saindo do banheiro");
+	        
+	        this.ehSujo = false;
 	    }
 	}
 		
 	/**
 	 * Usando o banheiro na acao numero 1
 	 */
-	public void fazNumero1() {
+	public void fazNumero1(long tempo) {
 		String nome = Thread.currentThread().getName();
+		BarraProgresso barra = new BarraProgresso();
+		int tempoI  = (int) tempo;
 		
 		System.out.println(nome + " Batendo na porta...");
 		
-		synchronized(this) {			
+		synchronized(this) {	
+			
 			while (this.ehSujo) {
 				esperaLaFora(nome);
 			}
 			
 			System.out.println(nome + " entrando no banheiro");
-	        System.out.println(nome + " fazendo coisa rapida");
+	        System.out.println(nome + " fazendo coisa rapida");	   	       	        
 	        
-	        try {
-	        	//mostra barra de progresso
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+	        barra.mostraBarraDeProgressoMultiploDe10(tempoI/1000);	        	        
 	        
-	        this.ehSujo = true;
 	        System.out.println(nome + " dando descarga");
 	        System.out.println(nome + " lavando a mao");
-	        System.out.println(nome + " saindo do banheiro");			
+	        System.out.println(nome + " saindo do banheiro");	
+	        
+	        this.ehSujo = true;
 		}
 	}
 	
 	/**
 	 * Usando o banheiro na acao numero 2
 	 */
-	public void fazNumero2() {		
+	public void fazNumero2(long tempo) {		
 		String nome = Thread.currentThread().getName();
+		BarraProgresso barra = new BarraProgresso();
+		int tempoI = (int) tempo;
 		
 		System.out.println(nome + " Batendo na porta...");
 		
@@ -124,19 +93,15 @@ public class Banheiro {
 			}
 			
 			System.out.println(nome + " entrando no banheiro");
-			System.out.println(nome + " fazendo coisa demorada");
-			
-	        try {
-	        	//mostra barra de progresso
-				Thread.sleep(12000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-	        
-	        this.ehSujo = true;
+			System.out.println(nome + " fazendo coisa demorada");			
+	        	        
+	        barra.mostraBarraDeProgressoMultiploDe10(tempoI/1000);
+	        	        
 	        System.out.println(nome + " dando descarga");
 	        System.out.println(nome + " lavando a mao");
-	        System.out.println(nome + " saindo do banheiro");			
+	        System.out.println(nome + " saindo do banheiro");
+	        
+	        this.ehSujo = true;
 		}
 	}
 

@@ -1,4 +1,4 @@
-package ufc.br.great.pc.banheiro.controle;
+package ufc.br.great.pc.banheiro.controle.util;
 
 public class ExtendedASCII {
     public static final char[] EXTENDED = { 0x00C7, 0x00FC, 0x00E9, 0x00E2,
