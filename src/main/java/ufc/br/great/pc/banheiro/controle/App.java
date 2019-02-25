@@ -9,7 +9,8 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Controle de entrada e limpeza do banheiro - convidados: Joao, Maria e Francisco" + "\n");
+        System.out.println( "Controle de entrada e limpeza do banheiro - convidados: Joao, Maria e Francisco");
+        System.out.println("Thread " + Thread.currentThread().getName() + " iniciou" + "\n");
         
         //Recurso que sera compartilhado
 		Banheiro banheiro = new Banheiro();
@@ -25,6 +26,9 @@ public class App
 		convidado3.start();
 		
 		limpeza.setDaemon(true);
-		limpeza.start();
+		limpeza.start();		
+		
+		System.out.println("Thread " + Thread.currentThread().getName() + " terminou");
+		
     }
 }
