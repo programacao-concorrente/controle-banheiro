@@ -28,7 +28,6 @@ public class Banheiro {
 	 */
 	public void limpa() {
 		String nome = Thread.currentThread().getName();		
-
 	    System.out.println(nome + " batendo na porta");
 
 	    synchronized (this) {
@@ -51,8 +50,7 @@ public class Banheiro {
 	 * Usando o banheiro na acao numero 1
 	 */
 	public void fazNumero1(long tempo) {
-		String nome = Thread.currentThread().getName();
-		BarraProgresso barra = new BarraProgresso();
+		String nome = Thread.currentThread().getName();		
 		int tempoI  = (int) tempo;
 		
 		System.out.println(nome + " Batendo na porta...");
@@ -64,9 +62,14 @@ public class Banheiro {
 			}
 			
 			System.out.println(nome + " entrando no banheiro");
-	        System.out.println(nome + " fazendo coisa rapida");	   	       	        
-	        
-	        barra.mostraBarraDeProgressoMultiploDe10(tempoI/1000);	        	        
+			
+			synchronized (Thread.currentThread()) {
+				BarraProgresso barra = new BarraProgresso();
+				synchronized (barra) {
+					System.out.println(nome + " fazendo coisa rapida");							
+					barra.mostraBarraDeProgressoEmTexto();
+				}
+			}
 	        
 	        System.out.println(nome + " dando descarga");
 	        System.out.println(nome + " lavando a mao");
@@ -81,7 +84,6 @@ public class Banheiro {
 	 */
 	public void fazNumero2(long tempo) {		
 		String nome = Thread.currentThread().getName();
-		BarraProgresso barra = new BarraProgresso();
 		int tempoI = (int) tempo;
 		
 		System.out.println(nome + " Batendo na porta...");
@@ -93,9 +95,14 @@ public class Banheiro {
 			}
 			
 			System.out.println(nome + " entrando no banheiro");
-			System.out.println(nome + " fazendo coisa demorada");			
-	        	        
-	        barra.mostraBarraDeProgressoMultiploDe10(tempoI/1000);
+			
+			synchronized (Thread.currentThread()) {
+				BarraProgresso barra = new BarraProgresso(); 				
+				synchronized (barra) {
+					System.out.println(nome + " fazendo coisa demorada");							
+					barra.mostraBarraDeProgressoEmTexto();
+				}
+			}
 	        	        
 	        System.out.println(nome + " dando descarga");
 	        System.out.println(nome + " lavando a mao");
