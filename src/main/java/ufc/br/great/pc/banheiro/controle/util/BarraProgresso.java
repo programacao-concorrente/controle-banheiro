@@ -1,8 +1,7 @@
 package ufc.br.great.pc.banheiro.controle.util;
 
 public class BarraProgresso {
-	private ExtendedASCII eASCII = new ExtendedASCII();
-	private char quadrado = eASCII.getAscii(218);
+	private char quadrado = ExtendedASCII.getAscii(218);
 	
 	/**
 	 * Mostra uma barra de progresso enquanto a ação é executada
@@ -120,6 +119,22 @@ public class BarraProgresso {
 			String numero = String.format("%.2f", percentual);
 			System.out.print(barra + numero + "% \r");
 		}
+	}
+	
+	public synchronized void mostraBarraDeProgressoEmTexto() {
+		char[] animationChars = new char[]{'|', '/', '-', '\\'};
+
+        for (int i = 0; i <= 100; i++) {
+            System.out.print("Processing: " + i + "% " + animationChars[i % 4] + "\r");
+
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("Done!             ");
+
 	}
 	
 }
